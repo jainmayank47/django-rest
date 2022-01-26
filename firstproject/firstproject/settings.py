@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'firstApp',
     'functionBased',
     'classBased',
+    'mixinBased',
 ]
 
 MIDDLEWARE = [
