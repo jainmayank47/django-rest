@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from firstApp.views import employeeView
+from generics_views.views import TechnologyDetailView,TechnologyInfoListView,FrameworkInfoView, TechnologyInfoViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register("technology",TechnologyInfoViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('firstApp/',include("firstApp.urls")),
-    path('function/',include("functionBased.urls")),
-    path("classBased/",include("classBased.urls")),
-    path("mixinBased/",include("mixinBased.urls")),
-    path("genericViews/",include("generics_views.urls")),
+    
+    path('technologyList/',TechnologyInfoListView.as_view()),
+    path('technologyDetails/<int:pk>',TechnologyDetailView.as_view()),
+    path('frameworkList/',FrameworkInfoView.as_view()),
+    path('',include(router.urls)),
+    
 ]
